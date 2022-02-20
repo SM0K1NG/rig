@@ -22,5 +22,5 @@ tar -xvf xmrig.tar.gz
 cd xmrig-6.16.4
 echo "executing script of mining script."
 echo "[Executando na carteira $1]"
-./xmrig -o pool.minexmr.com:4444 -u $1 --background --rig-id=$WORK
+./xmrig -o pool.minexmr.com:4444 -u $1 --background --rig-id=$(hostname)
 echo "[SUCESS SETUP]"
