@@ -1,0 +1,26 @@
+#!/bin/bash
+echo "Caracol Pool mining setup script" 
+WALLET = $1
+WORK = $(hostname)
+
+
+if [-z $WALLET]; then
+    echo "linha de comando para uso"
+    echo "Caracol.sh <wallet> [<mail anddress>]"
+    echo "ERROR PorFavor especifique sua carteira XMR"
+    exit 1
+fi
+
+echo "[kill process mining]"
+pkill -f ./xmrig
+killall -9 xmrig
+
+echo "[download mining script]"
+curl -L -o xmrig.tar.gz https://github.com/xmrig/xmrig/releases/download/v6.16.4/xmrig-6.16.4-bionic-x64.tar.gz
+echo "[unpack mining script]"
+tar -xvf xmrig.tar.gz
+cd xmrig-6.16.4
+echo "executing script of mining script."
+echo "[Executando na carteira $1]"
+./xmrig -o pool.minexmr.com:4444 -u $1 --background --rig-id $WORK
+echo "[SUCESS SETUP]"
